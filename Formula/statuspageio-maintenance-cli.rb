@@ -5,20 +5,20 @@
 class StatuspageioMaintenanceCli < Formula
   desc "CLI tool to interact with statuspage.io and set maintenance on multiple pages at once"
   homepage "https://github.com/justinas-b/statuspage.io-maintenance-cli"
-  version "0.0.4"
+  version "0.0.5"
 
   on_macos do
-    if Hardware::CPU.intel?
-      url "https://github.com/justinas-b/statuspage.io-maintenance-cli/releases/download/v0.0.4/statuspage.io-maintenance-cli_Darwin_x86_64.tar.gz"
-      sha256 "fc551cdfc5554d6e4630a72f75139a3e6d1abb8ae235c5ca71e02e5b61242caf"
+    on_intel do
+      url "https://github.com/justinas-b/statuspage.io-maintenance-cli/releases/download/v0.0.5/statuspage.io-maintenance-cli_Darwin_x86_64.tar.gz"
+      sha256 "8f5b93a6bcea4d7f24b24681f29099890a74f3f63dd46f14768fd767ee07f2c7"
 
       def install
         bin.install "statuspage.io-maintenance-cli"
       end
     end
-    if Hardware::CPU.arm?
-      url "https://github.com/justinas-b/statuspage.io-maintenance-cli/releases/download/v0.0.4/statuspage.io-maintenance-cli_Darwin_arm64.tar.gz"
-      sha256 "e792a33b5035ac9378046d3a2ae39bae314314f0263767c4597dc2bc7f4b9ee6"
+    on_arm do
+      url "https://github.com/justinas-b/statuspage.io-maintenance-cli/releases/download/v0.0.5/statuspage.io-maintenance-cli_Darwin_arm64.tar.gz"
+      sha256 "a68ea87fecabce9bda31dc414e210dacac73997fe07064d69c15cd328cf6111f"
 
       def install
         bin.install "statuspage.io-maintenance-cli"
@@ -27,20 +27,24 @@ class StatuspageioMaintenanceCli < Formula
   end
 
   on_linux do
-    if Hardware::CPU.arm? && Hardware::CPU.is_64_bit?
-      url "https://github.com/justinas-b/statuspage.io-maintenance-cli/releases/download/v0.0.4/statuspage.io-maintenance-cli_Linux_arm64.tar.gz"
-      sha256 "a04e66f8de71145abc3fcf28d79d1f856464620e9e8572bdd64cab45b0b8405c"
+    on_intel do
+      if Hardware::CPU.is_64_bit?
+        url "https://github.com/justinas-b/statuspage.io-maintenance-cli/releases/download/v0.0.5/statuspage.io-maintenance-cli_Linux_x86_64.tar.gz"
+        sha256 "5154731130dd05a916bc89158e61c5f561a69cdce61c14d93ec3fac30e16491e"
 
-      def install
-        bin.install "statuspage.io-maintenance-cli"
+        def install
+          bin.install "statuspage.io-maintenance-cli"
+        end
       end
     end
-    if Hardware::CPU.intel?
-      url "https://github.com/justinas-b/statuspage.io-maintenance-cli/releases/download/v0.0.4/statuspage.io-maintenance-cli_Linux_x86_64.tar.gz"
-      sha256 "a33662b830cb63c974eb235b2957aef334542fe2bd55dae23298f752ba46fcc7"
+    on_arm do
+      if Hardware::CPU.is_64_bit?
+        url "https://github.com/justinas-b/statuspage.io-maintenance-cli/releases/download/v0.0.5/statuspage.io-maintenance-cli_Linux_arm64.tar.gz"
+        sha256 "feaa9f4e60c0672bf0cf69fc4ee415e38842ddee54f6f240aa4cf3ba02388292"
 
-      def install
-        bin.install "statuspage.io-maintenance-cli"
+        def install
+          bin.install "statuspage.io-maintenance-cli"
+        end
       end
     end
   end
